@@ -37,7 +37,7 @@ const copyStyle = () => {
             }
             resolve({
                 ok: true,
-                message: 'Style sheet copied successfully'
+                message: 'Stylesheet copied'
             });
         });
     });
