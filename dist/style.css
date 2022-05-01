@@ -1,0 +1,36 @@
+/* style */ 
+/*Bootstrap for design and layout*/
+
+body {
+    background-color: lightcyan;
+}
+h1 {
+    font-size: 48px;
+}
+.banner {
+    background-color: rgb(25, 127, 54);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+.card-wrapper {
+    margin: 75px;
+}
+.card-header {
+    background-color: rgb(25, 127, 54);
+}
+.employee-card {
+    margin: 15px;
+    border-style: solid;
+    border-color: black;
+}
+.manager {
+    background-color: rgb(222, 222, 184);
+}
+.label {
+    font-weight: bold;
+}

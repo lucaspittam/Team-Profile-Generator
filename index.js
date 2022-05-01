@@ -225,7 +225,6 @@ const displayMenu = () => {
             }
         });
 }
-
 //application start
 addManager().then(function(mgrInfo){
     const manager = new Manager(mgrInfo.name, mgrInfo.id, mgrInfo.email, mgrInfo.officeNum);
