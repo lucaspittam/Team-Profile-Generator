@@ -10,19 +10,17 @@ let employees = [];
 const addManager = () => {
     //console.log("Inside addManager");
     return inquirer.prompt([
-
         {
             type: 'input',
             name: 'name',
-            message: "What is the team manager's name?"
-
+            message: "What's the manager's name?"
         },
 
         {
 
             type: 'number',
             name: 'id',
-            message: "What is the team manager's ID?"
+            message: "What's the manager's ID?"
 
         },
 
@@ -30,14 +28,14 @@ const addManager = () => {
 
             type: 'input',
             name: 'email',
-            message: "What is the team manager's email address?"
+            message: "What's the manager's email address?"
 
         },
 
         {
             type: 'number',
             name: 'officeNum',
-            message: "What is the team manager's office number?"
+            message: "What's the manager's office number?"
         }
 
     ]);
@@ -51,75 +49,61 @@ const addEngineer = () => {
         {
             type: 'input',
             name: 'name',
-            message: "What is the engineer's name?"
+            message: "What's the engineer's name?"
 
         },
 
         {
             type: 'number',
             name: 'id',
-            message: "What is the engineer's ID?"
+            message: "What's the engineer's ID?"
         },
 
         {
             type: 'input',
             name: 'email',
-            message: "What is the engineer's email address?"
+            message: "What's the engineer's email address?"
         },
 
         {
             type: 'input',
             name: 'github',
-            message: "What is the engineer's Github username?"
+            message: "What's the engineer's Github username?"
         }
 
     ])
 
 }
 const addIntern = () => {
-
     //console.log('inside addIntern');
-
     return inquirer.prompt([
 
         {
-
             type: 'input',
-
             name: 'name',
-
-            message: "What is the intern's name?"
+            message: "What's the intern's name?"
 
         },
 
         {
-
             type: 'number',
             name: 'id',
             message: "What is the intern's ID?"
-
         },
 
         {
-
             type: 'input',
             name: 'email',
-            message: "What is the intern's email address?"
-
+            message: "What's the intern's email address?"
         },
 
         {
-
             type: 'input',
             name: 'school',
-            message: "What is the intern's school?"
-
+            message: "What's the intern's school?"
         }
 
     ])
-
-
-
 
 }
 
@@ -129,26 +113,19 @@ const addIntern = () => {
 const displayMenu = () => {
 
     let done = false;
-
-    //while (!done) {
-
         inquirer.prompt(
-
             {
-
                 type: 'list',
                 name: 'choice',
-                message: 'What would you like to do?',
-
-                choices: ['Add an Engineer', 'Add an Intern', 'Finish Building My Team']
-
+                message: 'What do you want to do?',
+                choices: ['Add Engineer', 'Add Intern', 'Finish Building The Team']
             }
 
         ).then(menuChoice => {
 
             //console.log(menuChoice);
             //console.log(menuChoice.choice);
-            if(menuChoice.choice === 'Add an Engineer'){
+            if(menuChoice.choice === 'Add Engineer'){
 
                 //console.log('Calling addEngineer');
 
@@ -165,7 +142,7 @@ const displayMenu = () => {
 
                     displayMenu();
                 })
-            } else if (menuChoice.choice === 'Add an Intern') {
+            } else if (menuChoice.choice === 'Add Intern') {
                 //console.log('Calling addIntern');
                 addIntern()
                 .then(intInfo => {
@@ -173,38 +150,31 @@ const displayMenu = () => {
                     employees.push(intern);
 
                     //console.log("logging the intern object");
-
                     //console.log(intern);
-
                     //console.log("logging the employees array");
-
                     //console.log(employees);
-
                     //console.log(employees[0]);
-
                     //console.log(employees[1]);
-
                     displayMenu();
                 })
 
             } else {
 
-                done = true;
-
-                console.log('Finished building team');
-                console.log("========================================")
-                console.log('Logging the Employees Array');
-                console.log(employees);
-
+                 //console.log("========================================")
+                //console.log('Logging the Employees Array');
+                //console.log(employees);
+                const pageHTML = generateHTML(employees);
+                //console.log(pageHTML);
+                writeToFile('./dist/index.html', pageHTML).then(writeResponse => {
+                    console.log(writeResponse.message);
+                    return copyStyle();
+                })
+                .catch(err => {
+                    console.log(err);
+                });
             }
-
-
-
-
         });
-
     //}
-
 }
 
 
